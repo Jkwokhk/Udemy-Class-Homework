@@ -1,0 +1,28 @@
+try:
+    for i in ['a', 'b', 'c']:
+        print(i ** 2)
+except TypeError:
+    print("Type error")
+except:
+    print("All error")
+ /////////////////////   
+try:
+    x = 5
+    y = 0
+
+    z = x / y
+except ZeroDivisionError:
+    print("Zero")
+except:
+    print("ALL")
+    ////////////////////
+while True:
+    try:
+        def ask():
+            result = int(input("Please input a number:"))
+            print(result**2)
+        ask()
+    except:
+        print("An error occured! Try again!")
+    else:
+        break
