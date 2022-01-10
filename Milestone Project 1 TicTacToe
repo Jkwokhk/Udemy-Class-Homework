@@ -1,0 +1,134 @@
+move_no = 0
+row1=[" "," "," "]
+row2=[" "," "," "]
+row3=[" "," "," "]
+game_list=[row1,row2,row3]
+continue_game = True
+def display(game_list):
+   print(game_list[0])
+   print(game_list[1])
+   print(game_list[2])
+
+
+def position_choice():
+   accept_range= range(1,10)
+   within_range = False
+   choice = 'Wrong'
+   while choice.isdigit()==False or within_range==False:
+       choice=input("Please input a number(1-9):")
+
+       if choice.isdigit():
+           if int(choice) in accept_range:
+               within_range=True
+
+           else:
+               print("Input not in range!")
+       else:
+           print("Invalid input!")
+
+   return int(choice)
+
+def continue_choice():
+   choice='wrong'
+   while choice not in ['Y','N']:
+       choice = input("Keep playing? (Y or N):")
+       if choice not in ['Y','N']:
+           print("Invalid input!")
+   if choice =='Y':
+       return True
+   else:
+       return False
+
+def replacement_X(game_list,position_choice):
+   if position_choice in range(1,4):
+       game_list[2][position_choice-1]='X'
+   elif position_choice in range(4,7):
+       game_list[1][position_choice-4]='X'
+   elif position_choice in range(7,10):
+       game_list[0][position_choice-7]='X'
+
+   return game_list
+
+def replacement_O(game_list,position_choice):
+   if position_choice in range(1,4):
+       game_list[2][position_choice-1]='O'
+   elif position_choice in range(4,7):
+       game_list[1][position_choice-4]='O'
+   elif position_choice in range(7,10):
+       game_list[0][position_choice-7]='O'
+
+   return game_list
+
+def win_con(game_list):
+   win=False
+   if game_list[0][0]== game_list[0][1] ==  game_list[0][2]=='X' or game_list[0][0]== game_list[0][1] ==  game_list[0][2]=='O':
+       win=True
+   elif game_list[1][0]== game_list[1][1] == game_list[1][2]=='X' or game_list[1][0]== game_list[1][1] == game_list[1][2]=='O':
+       win=True
+   elif game_list[2][0]== game_list[2][1] == game_list[2][2]=='X' or game_list[2][0]== game_list[2][1] == game_list[2][2]=='O':
+       win=True
+   elif game_list[0][0]== game_list[1][0]==game_list[2][0] =='X' or game_list[0][0]== game_list[1][0]==game_list[2][0] =='O':
+       win=True
+   elif game_list[0][1]== game_list[1][1]== game_list[2][1] == 'X' or game_list[0][1]== game_list[1][1]== game_list[2][1] == 'O':
+       win=True
+   elif game_list[0][2]== game_list[1][2]== game_list[2][2] =='X' or game_list[0][2]== game_list[1][2]== game_list[2][2] =='O':
+       win=True
+   elif game_list[0][0]== game_list[1][1]== game_list[2][2] == 'X' or game_list[0][0]== game_list[1][1]== game_list[2][2] == 'O':
+       win = True
+   elif game_list[0][2]== game_list[1][1]== game_list[2][0] == 'X' or game_list[0][2]== game_list[1][1]== game_list[2][0] == 'O':
+       win = True
+   return win
+
+def check_draw(move_no):
+   if move_no == 9:
+       print("Tie!")
+       return True
+   else:
+       return False
+
+while continue_game == True:
+   while win_con(game_list)==False:
+       if win_con(game_list)==False or check_draw(move_no)==False:
+
+         display(game_list)
+         replacement_X(game_list,position_choice())
+         move_no+=1
+         if win_con(game_list)==True:
+              print("X won!")
+
+       if win_con(game_list)==False or check_draw(move_no)==False:
+         display(game_list)
+         replacement_O(game_list,position_choice())
+         move_no+=1
+         if win_con(game_list)==True:
+               print("O won!")
+
+   continue_game = continue_choice()
+   if continue_game == True:
+       print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+       row1 = [" ", " ", " "]
+       row2 = [" ", " ", " "]
+       row3 = [" ", " ", " "]
+       game_list = [row1, row2, row3]
+   else:
+       print("Goodbye!")
+
+
+
+
+
+
+
+
+
+Feedback:
+Need to check if space is empty
+Sol: Use for loop 
+For i in range(3):
+For j in range(3):
+If game_list[i][j]==” “:
+print (“available”)
+
+Check if draw
+Sol: use for loop like above to check for empty spaces
+
